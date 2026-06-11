@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的旅游推荐 | 个人旅行分享</title>
+    <!-- 引入Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fef6ea;
+            font-family: 'Segoe UI', 'Roboto', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            color: #2c2b28;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 12px;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            padding: 0.5rem 0;
+        }
+        /* 头像样式 */
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+            border: 2px solid #e6b422;
+        }
+        .navbar-brand {
+            font-size: 1.1rem !important;
+            display: flex;
+            align-items: center;
+        }
+        .nav-link {
+            font-size: 0.95rem;
+            padding: 0.6rem 0.8rem !important;
+        }
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                padding-top: 0.8rem;
+            }
+            .nav-item {
+                margin: 0.2rem 0;
+            }
+            .d-flex {
+                margin-top: 0.8rem;
+            }
+        }
+
+        /* 头部轮播/横幅 */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.3)), url('images/banner.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 30px;
+        }
+        .hero-content h1 {
+            font-size: 2rem;
+            text-shadow: 2px 2px 16px rgba(0, 0, 0, 0.6);
+            margin-bottom: 0.8rem;
+        }
+        @media (max-width: 680px) {
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* 模块标题 */
+        .section-title {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1.2rem 0;
+            border-left: 4px solid #e6b422;
+            padding-left: 12px;
+            color: #1f3d2c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ========== 精选景点 网格布局 ========== */
+        .grid-container {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            /* 大屏电脑：一行5列 */
+            grid-template-columns: repeat(5, 1fr);
+        }
+        /* 平板设备：一行3列 */
+        @media (max-width: 991px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        /* 大屏手机：一行2列 */
+        @media (max-width: 767px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        /* 小屏手机：单列 */
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 景点卡片 */
+        .spot-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .spot-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-img {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-content {
+            padding: 0.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .card-content h3 {
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+            color: #1f3d2c;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .card-content p {
+            color: #5a5a55;
+            margin: 0.4rem 0;
+            line-height: 1.4;
+            font-size: 0.85rem;
+        }
+
+        .tag {
+            background: #eef4e6;
+            color: #2a6e3a;
+            border-radius: 40px;
+            padding: 2px 8px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            align-self: flex-start;
+            margin-bottom: 6px;
+        }
+
+        .detail-link {
+            margin-top: 0.6rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #f0f3ea;
+            padding: 5px 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #2a6e3a;
+            text-decoration: none;
+            align-self: flex-start;
+            transition: all 0.2s;
+            border: 1px solid #dde4d2;
+        }
+        .detail-link:hover {
+            background: #2a6e3a;
+            color: #fff;
+            border-color: #2a6e3a;
+        }
+
+        /* 交通图文模块 */
+        .text-intro {
+            background: #fff;
+            border-radius: 20px;
+            padding: 1rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.2rem;
+        }
+        .text-intro p {
+            font-size: 0.95rem;
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .pic-desc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            background: #f8faf6;
+            border-radius: 16px;
+            padding: 1rem;
+        }
+        .pic-desc-img {
+            flex: 1;
+            min-width: 220px;
+            height: 200px;
+            border-radius: 14px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .pic-desc-text {
+            flex: 1;
+            min-width: 220px;
+        }
+        .pic-desc-text h3 {
+            font-size: 1.1rem;
+            color: #1f3d2c;
+            margin-bottom: 0.6rem;
+        }
+        @media (max-width: 760px) {
+            .pic-desc {
+                flex-direction: column;
+            }
+        }
+
+        /* 美食模块 */
+        .food-row {
+            background: #fff;
+            border-radius: 20px;
+            padding: 1rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+            margin-bottom: 1.2rem;
+        }
+        /* 美食图片：等比例缩小，居中、不变形 */
+        .food-img {
+            border-radius: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 85%;
+            height: auto;
+        }
+
+        /* 花期卡片 */
+        .flower-card-custom {
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .flower-card-custom .card-header {
+            background-color: #2a6e3a;
+            color: #fff;
+        }
+
+        /* 文化模块图标 */
+        .feature-icon {
+            background-color: #2a6e3a;
+            color: #fff;
+            border-radius: 12px;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .icon-link {
+            color: #2a6e3a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        .icon-link:hover {
+            color: #1f552a;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 导航栏：头像 + 个人昵称 -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <!-- 替换为你的头像和名字，修改src和文字即可 -->
+    <a class="navbar-brand" href="#home">
+        <img src="images/touxiang.jpg" alt="个人头像" class="avatar">
+        白庆秀
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- 原首页 改为 我的旅游感受 -->
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#home">我的旅游感受</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#spots">游玩推荐</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#food">美食分享</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#flowers">四季赏花</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#traffic">出行交通</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#culture">人文体验</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main>
+    <!-- 我的旅游感受 内容区域（无图片，单按钮版） -->
+<section id="home" class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">我的旅途 · 所见所感</h1>
+    <div class="col-lg-8 mx-auto">
+        <p class="lead mb-4" style="text-align: left; line-height: 1.8;">
+            行走四方，记录美好。这里分享我亲身打卡过的景点、地道美食、实用交通攻略与当地人文风情，把旅行中的快乐与经验分享给每一位热爱出行的朋友。
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <!-- 修改 href 为独立页面 feeling.html -->
+            <a href="feeling.html" target="_blank" class="btn btn-primary btn-lg px-4 gap-3">我的旅游感受</a>
+        </div>
+    </div>
+</section>
+
+    <!-- 游玩推荐（原精选景点） -->
+    <div class="container" id="spots">
+        <div class="section-title">
+            <i class="fas fa-camera-retro" style="color:#e6b422;"></i> 我打卡过的景点推荐
+        </div>
+        <div class="grid-container" id="spotsContainer"></div>
+    </div>
+
+    <!-- 美食分享（原美食地图） -->
+    <div class="container" id="food">
+        <div class="section-title">
+            <i class="fas fa-utensils" style="color:#e6b422;"></i> 旅途美食 · 地道风味分享
+        </div>
+        <div class="food-row row flex-lg-row-reverse align-items-center g-5 py-4">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="images/food_main.jpg" class="food-img d-block mx-lg-auto img-fluid" alt="特色美食" width="700" height="500" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="fw-bold text-body-emphasis lh-1 mb-3">舌尖上的旅途，风味十足</h2>
+                <p class="lead">每一座城市都有独属于自己的味道。整理了我一路上吃到的特色小吃、经典正餐与伴手美食，带你感受不一样的地域风味。</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+                    <a href="food_detail.html" target="_blank" class="btn btn-success px-4 me-md-2">完整美食清单</a>
+                    <a href="food_rank.html" target="_blank" class="btn btn-outline-secondary px-4">个人美食排行</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 四季赏花 -->
+    <div class="container py-3" id="flowers">
+        <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+            <h1 class="display-4 fw-normal text-body-emphasis">
+                <i class="fas fa-seedling text-success"></i> 四季赏花游记
+            </h1>
+            <p class="fs-5 text-body-secondary">追着花期出行，记录四季花海，分享赏花地点、最佳时间与游玩小贴士。</p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 mb-5 text-center">
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm flower-card-custom">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">春季 · 樱花季</h4>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title mb-3">2月 — 3月</h2>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>主要花卉：云南樱花</li>
+                            <li>推荐地点：圆通山</li>
+                            <li>最佳观赏：全天</li>
+                            <li>游玩时长：2–3小时</li>
+                        </ul>
+                        <a href="flower_spring.html" target="_blank" class="w-100 btn btn-lg btn-outline-success">我的赏花体验</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm flower-card-custom">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">夏季 · 荷花季</h4>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title mb-3">6月 — 8月</h2>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>主要花卉：荷花</li>
+                            <li>推荐地点：大观楼</li>
+                            <li>最佳观赏：清晨/傍晚</li>
+                            <li>游玩时长：2小时</li>
+                        </ul>
+                        <a href="flower_summer.html" target="_blank" class="w-100 btn btn-lg btn-success">我的赏花体验</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card mb-4 rounded-3 shadow-sm border-success flower-card-custom">
+                    <div class="card-header py-3 text-bg-success border-success">
+                        <h4 class="my-0 fw-normal">冬季 · 梅花季</h4>
+                    </div>
+                    <div class="card-body">
+                        <h2 class="card-title mb-3">12月 — 1月</h2>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>主要花卉：腊梅/红梅</li>
+                            <li>推荐地点：黑龙潭</li>
+                            <li>最佳观赏：上午</li>
+                            <li>游玩时长：1.5小时</li>
+                        </ul>
+                        <a href="flower_winter.html" target="_blank" class="w-100 btn btn-lg btn-success">我的赏花体验</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="display-6 text-center mb-4">花期体验对比</h2>
+        <div class="table-responsive">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th style="width: 34%;">项目</th>
+                        <th style="width: 22%;">春季樱花</th>
+                        <th style="width: 22%;">夏季荷花</th>
+                        <th style="width: 22%;">冬季梅花</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row" class="text-start">盛开时段</th>
+                        <td>2–3月</td>
+                        <td>6–8月</td>
+                        <td>12–1月</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-start">核心园区</th>
+                        <td>圆通山</td>
+                        <td>大观楼</td>
+                        <td>黑龙潭</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-start">适合拍照</th>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-start">周边美食</th>
+                        <td>✅</td>
+                        <td>✅</td>
+                        <td>✅</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 出行交通（原交通指南） -->
+    <div class="container" id="traffic">
+        <div class="section-title">
+            <i class="fas fa-bus" style="color:#e6b422;"></i> 出行交通 · 个人出行攻略
+        </div>
+        <div class="text-intro">
+            <p>结合自己多次出行经验，整理当地完整交通方案。涵盖飞机、高铁、地铁、公交、短途代步等多种方式，帮你避开出行误区，省钱又省心，轻松玩转各个景点。</p>
+
+            <div class="pic-desc">
+                <div class="pic-desc-img" style="background-image: url('images/subway_map.jpg');"></div>
+                <div class="pic-desc-text">
+                    <h3>市内公共交通心得</h3>
+                    <p>地铁、公交贯穿全城主要打卡点，换乘便捷、性价比高。根据我的实地体验，整理了景点直达路线、乘车时间与避峰建议。</p>
+                    <a href="traffic_detail.html" target="_blank" class="detail-link">
+                        🚇 查看完整交通攻略 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 人文体验（原文化体验） -->
+    <div class="container px-4 py-5" id="culture">
+        <h2 class="pb-2 border-bottom">当地人文 · 民俗与历史体验</h2>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="fs-2 text-body-emphasis">民族风情</h3>
+                <p>走访当地村寨与民俗聚集地，感受多元民族文化、传统节庆与特色服饰歌舞，沉浸式体验地域特色。</p>
+                <a href="culture_nation.html" class="icon-link">
+                    我的体验分享
+                    <svg class="bi" aria-hidden="true" width="16" height="16"><use xlink:href="#chevron-right"></use></svg>
+                </a>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3 class="fs-2 text-body-emphasis">非遗手工</h3>
+                <p>近距离接触传统非遗技艺，亲手体验手工制作，感受老手艺背后的匠心与历史传承。</p>
+                <a href="culture_intangible.html" class="icon-link">
+                    我的体验分享
+                    <svg class="bi" aria-hidden="true" width="16" height="16"><use xlink:href="#chevron-right"></use></svg>
+                </a>
+            </div>
+            <div class="feature col">
+                <div class="feature-icon d-inline-flex align-items-center justify-content-center fs-2 mb-3">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h3 class="fs-2 text-body-emphasis">古镇漫步</h3>
+                <p>游走古老街巷，欣赏明清古建筑，感受慢节奏的古镇生活，记录古色古香的人文景致。</p>
+                <a href="culture_town.html" class="icon-link">
+                    我的体验分享
+                    <svg class="bi" aria-hidden="true" width="16" height="16"><use xlink:href="#chevron-right"></use></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- 页脚 -->
+<div class="container">
+    <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 border-top">
+        <div class="col mb-3">
+            <p class="text-body-secondary">© 2026 我的个人旅游分享</p>
+        </div>
+        <div class="col mb-3"></div>
+        <div class="col mb-3">
+            <h5>快速导航</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#home" class="nav-link p-0 text-body-secondary">旅游感受</a></li>
+                <li class="nav-item mb-2"><a href="#spots" class="nav-link p-0 text-body-secondary">游玩推荐</a></li>
+                <li class="nav-item mb-2"><a href="#food" class="nav-link p-0 text-body-secondary">美食分享</a></li>
+                <li class="nav-item mb-2"><a href="#flowers" class="nav-link p-0 text-body-secondary">四季赏花</a></li>
+                <li class="nav-item mb-2"><a href="#traffic" class="nav-link p-0 text-body-secondary">出行交通</a></li>
+            </ul>
+        </div>
+        <div class="col mb-3">
+            <h5>更多内容</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">关于我</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">旅行相册</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">出行干货</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">留言交流</a></li>
+            </ul>
+        </div>
+        <div class="col mb-3">
+            <h5>相关推荐</h5>
+            <ul class="nav flex-column">
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">热门目的地</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">住宿推荐</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">旅行路线</a></li>
+                <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">出行贴士</a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const spots = [
+        {
+            id: 1,
+            name: "石林风景区",
+            shortDesc: "世界自然遗产，喀斯特峰林奇观，阿诗玛故乡",
+            tag: "⛰️ 地质奇观",
+            img: "images/img1.jpg",
+            link: "detail1.html"
+        },
+        {
+            id: 2,
+            name: "滇池 & 海埂大坝",
+            shortDesc: "高原明珠，冬季红嘴鸥漫天，西山睡美人倒影",
+            tag: "🌊 湖光山色",
+            img: "images/img2.jpg",
+            link: "detail2.html"
+        },
+        {
+            id: 3,
+            name: "翠湖公园",
+            shortDesc: "城中碧玉，四季花海，冬日鸥群翩跹",
+            tag: "🌸 人文休闲",
+            img: "images/img3.jpg",
+            link: "detail3.html"
+        },
+        {
+            id: 4,
+            name: "斗南花市",
+            shortDesc: "亚洲最大鲜切花市场，鲜花按斤卖，浪漫不贵",
+            tag: "💐 鲜花天堂",
+            img: "images/img4.jpg",
+            link: "detail4.html"
+        },
+        {
+            id: 5,
+            name: "云南民族村",
+            shortDesc: "25个少数民族缩影，一天看遍云南风情",
+            tag: "🎎 民族文化",
+            img: "images/img5.jpg",
+            link: "detail5.html"
+        }
+    ];
+
+    function renderSpots() {
+        const container = document.getElementById("spotsContainer");
+        container.innerHTML = "";
+        spots.forEach(spot => {
+            const card = document.createElement("div");
+            card.className = "spot-card";
+            card.innerHTML = `
+                <div class="card-img" style="background-image: url('${spot.img}');"></div>
+                <div class="card-content">
+                    <span class="tag"><i class="fas fa-location-dot"></i> ${spot.tag}</span>
+                    <h3><i class="fas fa-mountain-city"></i> ${spot.name}</h3>
+                    <p>${spot.shortDesc}</p>
+                    <a href="${spot.link}" target="_blank" class="detail-link">
+                        📖 我的游玩心得 <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', renderSpots);
+</script>
+</body>
+</html>

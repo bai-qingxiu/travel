@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>昆明交通指南详情</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fef6ea;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        .back-btn {
+            margin: 2rem 0;
+        }
+        .traffic-detail-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .title-border {
+            border-left: 5px solid #2a6e3a;
+            padding-left: 12px;
+            margin-bottom: 1rem;
+        }
+        .item-box {
+            background: #f8faf6;
+            padding: 1rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .traffic-detail-card {
+                padding: 1rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回首页按钮 -->
+        <div class="back-btn">
+            <a href="index.html" class="btn btn-outline-success">
+                返回首页
+            </a>
+        </div>
+
+        <h2 class="text-center mb-5 fw-bold text-success">
+            昆明交通指南详情
+        </h2>
+
+        <!-- 交通整体概况 -->
+        <div class="traffic-detail-card">
+            <h3 class="fw-bold title-border">🚦 昆明交通整体概况</h3>
+            <p class="text-muted">
+                昆明作为云南省省会、西南地区重要交通枢纽，现已形成<strong>航空、高铁、地铁、公交、公路</strong>五位一体的立体化交通网络。全市交通四通八达，内外联动便捷高效，无论是省外远道而来，还是市内景区穿梭，都能轻松出行。完善的公共交通体系，极大降低了游客的出行成本，是自由行、短途旅游的友好型旅游城市。
+            </p>
+            <p class="text-muted mb-0">
+                市区各大景点、商圈、美食街区基本被公共交通覆盖，无需频繁打车，绿色出行即可玩转春城。
+            </p>
+        </div>
+
+        <!-- 地铁游玩攻略 -->
+        <div class="traffic-detail-card">
+            <h3 class="fw-bold title-border">🚇 市内地铁游玩攻略</h3>
+            <p class="text-muted">昆明地铁线路覆盖绝大多数热门景区，是游客市内出行首选，准时、便宜、不堵车：</p>
+
+            <div class="item-box">
+                <h5 class="fw-bold text-success">3号线 —— 城市文旅核心线</h5>
+                <p class="text-muted mb-0">贯穿昆明主城东西方向，串联超多老牌景点。途经西山公园、龙门石窟、翠湖公园、云南大学、陆军讲武堂等核心打卡地，是来昆旅游必坐的黄金线路，一站一景，游玩效率极高。</p>
+            </div>
+
+            <div class="item-box">
+                <h5 class="fw-bold text-success">4号线 —— 鲜花治愈专线</h5>
+                <p class="text-muted mb-0">主打网红文旅线路，直达<strong>斗南花市</strong>——亚洲最大鲜切花交易市场。可体验“鲜花按斤买”的春城浪漫，同时途经联大街、吴家营等美食商圈，适合逛花市、吃小吃、休闲打卡。</p>
+            </div>
+
+            <div class="item-box">
+                <h5 class="fw-bold text-success">5号线 —— 滇池观景专线</h5>
+                <p class="text-muted mb-0">昆明最美观景地铁线，沿滇池沿岸铺设，直达海埂大坝、滇池度假区。每年冬季可乘坐5号线前往观赏西伯利亚红嘴鸥，沿途风光秀丽，视野开阔，观景体验极佳。</p>
+            </div>
+
+            <div class="item-box">
+                <h5 class="fw-bold text-success">1/2号线 —— 主城主干环线</h5>
+                <p class="text-muted mb-0">贯穿市中心南北主干道，覆盖昆明火车站、南屏街、金鹰商圈、同德广场等核心区域，逛街、购物、中转换乘首选，是市区通勤、夜游商圈的主要线路。</p>
+            </div>
+        </div>
+
+        <!-- 机场出行指南 -->
+        <div class="traffic-detail-card">
+            <h3 class="fw-bold title-border">✈️ 机场出行指南（长水国际机场）</h3>
+            <p class="text-muted">
+                昆明长水国际机场是云南省唯一的国际航空枢纽，通航国内外数百座城市，是游客抵达昆明的主要入口。
+            </p>
+            <ul class="list-unstyled mt-3 mb-0">
+                <li class="mb-3"><strong>机场交通：</strong>有机场大巴、地铁6号线、出租车、网约车全方位接驳市区</li>
+                <li class="mb-3"><strong>地铁直达：</strong>6号线可直达主城东部，换乘其他地铁线路通达全城</li>
+                <li class="mb-3"><strong>机场大巴：</strong>多条线路覆盖火车站、南屏街、昆明南站，深夜抵达也可进城</li>
+                <li class="mb-0"><strong>小贴士：</strong>机场距离市区较远，白天优先选择地铁，深夜抵达建议打车或机场大巴</li>
+            </ul>
+        </div>
+
+        <!-- 高铁火车指南 -->
+        <div class="traffic-detail-card">
+            <h3 class="fw-bold title-border">🚄 高铁 / 火车出行指南</h3>
+            <div class="item-box">
+                <h5 class="fw-bold">昆明南站（高铁站）</h5>
+                <p class="text-muted mb-0">云南最大高铁枢纽，主打省外长线与省内城际高铁，可直达大理、丽江、玉溪、建水等热门旅游城市。地铁1号线、4号线直达昆明南站，无缝换乘进城，交通十分便捷。</p>
+            </div>
+            <div class="item-box">
+                <h5 class="fw-bold">昆明火车站（普速站）</h5>
+                <p class="text-muted mb-0">位于市中心位置，交通极其便利，主打普通列车线路。出站即有地铁、公交，紧邻商圈，适合就近入住、逛街游玩。</p>
+            </div>
+        </div>
+
+        <!-- 其他出行方式 -->
+        <div class="traffic-detail-card">
+            <h3 class="fw-bold title-border">🚌 市内其他出行方式</h3>
+            <ul class="list-unstyled mt-3 mb-0">
+                <li class="mb-3"><strong>城市公交：</strong>线路密集、覆盖全城，票价便宜，适合深度逛老街、小众景点</li>
+                <li class="mb-3"><strong>共享单车/电单车：</strong>春城道路平坦、气候舒适，短距离骑行游玩体验极佳</li>
+                <li class="mb-0"><strong>出租车/网约车：</strong>适合多人同行、行李较多、夜间返程，出行灵活省心</li>
+            </ul>
+        </div>
+
+        <!-- 出行总结建议 -->
+        <div class="traffic-detail-card">
+            <h3 class="fw-bold title-border">💡 出行总结与游玩建议</h3>
+            <p class="text-muted mb-0">
+                昆明整体交通便捷度极高，首次游玩优先选择<strong>地铁出行</strong>，覆盖绝大多数网红景点，省时省钱不堵车。远距离往返城市选择高铁、飞机，市内短途搭配公交与骑行。合理搭配出行方式，可高效玩转春城各大美景、美食与人文景点。
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

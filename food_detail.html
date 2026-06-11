@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>昆明美食大全 - 详细介绍</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #fef6ea;
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        .food-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+        }
+        .food-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+        .food-img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .back-btn {
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回首页按钮 -->
+        <div class="back-btn">
+            <a href="index.html" class="btn btn-outline-success">
+                <i class="fas fa-arrow-left"></i> 返回首页
+            </a>
+        </div>
+
+        <h2 class="text-center mb-5 fw-bold text-success">
+            <i class="fas fa-utensils"></i> 昆明特色美食全介绍
+        </h2>
+
+        <div class="row g-4">
+            <!-- 美食1 过桥米线 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="food-card">
+                    <img src="images/food1.jpg" alt="过桥米线" class="food-img">
+                    <div class="p-4">
+                        <h4 class="fw-bold">过桥米线</h4>
+                        <p class="text-muted">云南经典招牌美食，滚烫高汤搭配鲜肉、蔬菜、米线，鲜香浓郁，口感顺滑，是来到昆明必尝的正餐。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 美食2 汽锅鸡 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="food-card">
+                    <img src="images/food2.jpg" alt="汽锅鸡" class="food-img">
+                    <div class="p-4">
+                        <h4 class="fw-bold">汽锅鸡</h4>
+                        <p class="text-muted">云南非遗名菜，采用汽锅隔水蒸制，鸡肉鲜嫩、汤汁清甜滋补，原汁原味，营养丰富。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 美食3 鲜花饼 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="food-card">
+                    <img src="images/food3.jpg" alt="鲜花饼" class="food-img">
+                    <div class="p-4">
+                        <h4 class="fw-bold">鲜花饼</h4>
+                        <p class="text-muted">昆明标志性伴手礼，以食用玫瑰为馅料，外皮酥软，花香浓郁，甜而不腻，老少皆宜。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 美食4 豆花米线 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="food-card">
+                    <img src="images/food4.jpg" alt="豆花米线" class="food-img">
+                    <div class="p-4">
+                        <h4 class="fw-bold">豆花米线</h4>
+                        <p class="text-muted">昆明人气街头小吃，滑嫩豆花搭配筋道米线，调料丰富，香辣爽口，早餐、加餐首选。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 美食5 烧饵块 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="food-card">
+                    <img src="images/food5.jpg" alt="烧饵块" class="food-img">
+                    <div class="p-4">
+                        <h4 class="fw-bold">烧饵块</h4>
+                        <p class="text-muted">昆明传统早餐，软糯饵块炭火烤制，搭配甜酱、辣酱或油条，风味十足，充满市井气息。</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 美食6 野生菌火锅 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="food-card">
+                    <img src="images/food6.jpg" alt="野生菌火锅" class="food-img">
+                    <div class="p-4">
+                        <h4 class="fw-bold">野生菌火锅</h4>
+                        <p class="text-muted">云南特色火锅，各类野生菌搭配高汤，鲜味独特，营养美味，是夏季、秋季热门美食。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
